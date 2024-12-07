@@ -40,3 +40,38 @@ Install the necessary packages:
 
 ```bash
 sudo apt install ros-foxy-gazebo-ros-pkgs
+```
+
+## Build a warehouse
+
+Return to the root of your workspace:
+
+```bash
+colcon build --packages-select warehouse_robot_controller_pkg
+```
+
+## Launch Your Robot and Warehouse Using ROS 2
+
+```bash
+ros2 launch warehouse_robot_spawner_pkg gazebo_world.launch.py
+```
+
+Open a new terminal window, and launch the controller.
+
+```bash
+ros2 launch warehouse_robot_controller_pkg controller_estimator.launch.py
+```
+
+## Move the Robot Around the Warehouse
+
+Open a new terminal window, and type:
+
+```bash
+ros2 launch warehouse_robot_spawner_pkg gazebo_world.launch.py
+```
+
+Then open another terminal window, and type:
+
+```bash
+ros2 run turtlebot3_teleop teleop_keyboard --ros-args --remap /cmd_vel:=/demo/cmd_vel
+```
